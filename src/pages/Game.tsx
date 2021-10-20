@@ -1,15 +1,14 @@
 import { ReactElement, useState, KeyboardEvent } from 'react'
-import { Link } from "react-router-dom"
 
 import "../App.css"
 
 import { PlayGround } from "../components/PlayGround"
+import ClearModal from "../components/ClearModal"
 
 const Game = (): ReactElement => {
   const keywords: string[] = ['a', 'acq', 'qqqa']
   const numberOfChars: number = keywords.join("").length
   const [keywordsIndex, setKeywordsIndex] = useState<number>(0)
-  
   const getExam = (): string[] => {
     const keyword = keywords[keywordsIndex]
     setKeywordsIndex((prev) => prev + 1)
@@ -41,8 +40,8 @@ const Game = (): ReactElement => {
 
       if (okKeys.length === exam.length) {
         if (keywords.length === keywordsIndex) {
-          setIsClearClass(() => {
-            return 'modal is-active'
+          setIsClearClass((prev) => {
+            return `${prev} is-active`
           })
         } else {
           setExam(() => {return getExam()})
@@ -58,26 +57,13 @@ const Game = (): ReactElement => {
 
   return (
     <>
-      <div className={isClearClass}>
-        <div className="modal-background"></div>
-        <div className="modal-card">
-          <header className="modal-card-head">
-            <p className="modal-card-title">クリア！</p>
-          </header>
-          <section className="modal-card-body">
-            {noMissCount} / {numberOfChars}
-          </section>
-          <footer className="modal-card-foot">
-            <Link 
-              to="/" 
-              className="button is-success"
-            >TOPに戻る</Link>
-          </footer>
-        </div>
-      </div>
+      <ClearModal
+        noMissCount={noMissCount}
+        numberOfChars={numberOfChars}
+        isClearClass={isClearClass} />
 
       <div 
-        className="play-board"
+        className="play-board box"
         tabIndex={0}
         onKeyDown={keyDown}
       >

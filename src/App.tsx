@@ -7,8 +7,8 @@ import Game from './pages/Game'
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route exact path="/" component={Top} />
           <Route exact path="/game" component={Game} />

@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import { Link } from "react-router-dom"
 
 const Header = (): ReactElement => {
   return (
@@ -8,14 +9,15 @@ const Header = (): ReactElement => {
         role="navigation" 
         aria-label="main navigation">
         <div className="navbar-brand">
-          <a 
+          <Link
+            to="/"
             className="navbar-item" 
-            href="https://bulma.io">
+          >
             <img 
               src="https://bulma.io/images/bulma-logo.png" 
               width="112" 
               height="28" />
-          </a>
+          </Link>
 
           <a 
             role="button" 
@@ -32,10 +34,6 @@ const Header = (): ReactElement => {
         <div 
           id="navbarBasicExample" 
           className="navbar-menu">
-          <div className="navbar-start">
-            <a className="navbar-item">Home</a>
-          </div>
-
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
